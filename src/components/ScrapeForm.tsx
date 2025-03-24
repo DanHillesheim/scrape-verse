@@ -4,6 +4,9 @@ import { motion } from 'framer-motion';
 import { ScrapingOptions, scrapeWebsite, ScrapingResult } from '../lib/scraper';
 import { ResultsCard } from './ResultsCard';
 import { Search, FileText, Image, FileType2, Loader2 } from 'lucide-react';
+import { useAuth } from '@/contexts/AuthContext';
+import { historyService } from '@/lib/historyService';
+import { useToast } from '@/hooks/use-toast';
 
 export const ScrapeForm: React.FC = () => {
   const [url, setUrl] = useState('');
@@ -14,6 +17,8 @@ export const ScrapeForm: React.FC = () => {
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState<ScrapingResult | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const { user } = useAuth();
+  const { toast } = useToast();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -37,6 +42,24 @@ export const ScrapeForm: React.FC = () => {
       
       if (!result.success) {
         setError(result.error || 'Failed to scrape website');
+      } else {
+        // Save to history if user is logged in
+        if (user) {
+          try {
+            await historyService.saveToHistory(processedUrl, options.targetType, result);
+            toast({
+              title: "Saved to history",
+              description: "This scraping result has been saved to your history"
+            });
+          } catch (historyError) {
+            console.error("Error saving to history:", historyError);
+            toast({
+              variant: "destructive",
+              title: "Warning",
+              description: "Failed to save to history, but scraping was successful"
+            });
+          }
+        }
       }
     } catch (err) {
       setError(err instanceof Error ? err.message : 'An unknown error occurred');

@@ -103,7 +103,7 @@ const History: React.FC = () => {
                   </span>
                   <p className="mt-2 text-muted-foreground">
                     {item.result.success 
-                      ? `Successfully scraped ${Object.keys(item.result.data || {}).length} items` 
+                      ? `Successfully scraped ${item.result.items.length} items` 
                       : `Error: ${item.result.error}`}
                   </p>
                 </div>

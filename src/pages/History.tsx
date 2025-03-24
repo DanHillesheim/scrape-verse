@@ -8,6 +8,7 @@ import { Loader2, Calendar, ExternalLink } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { format } from 'date-fns';
 import { useNavigate } from 'react-router-dom';
+import { Badge } from '@/components/ui/badge';
 
 const History: React.FC = () => {
   const { user } = useAuth();
@@ -65,7 +66,7 @@ const History: React.FC = () => {
             <p className="text-muted-foreground">You don't have any scraping history yet.</p>
             <Button 
               variant="outline" 
-              className="mt-4"
+              className="mt-4 hover:text-hover hover:border-hover"
               onClick={() => navigate('/')}
             >
               Start Scraping
@@ -90,6 +91,7 @@ const History: React.FC = () => {
                     <Button 
                       variant="outline" 
                       size="sm"
+                      className="hover:text-hover hover:border-hover"
                       onClick={() => window.open(item.url, '_blank')}
                     >
                       <ExternalLink className="h-4 w-4 mr-1" />
@@ -98,9 +100,9 @@ const History: React.FC = () => {
                   </div>
                 </div>
                 <div className="text-sm">
-                  <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-300">
+                  <Badge variant="outline" className="bg-gray-100 text-gray-800 dark:bg-gray-800 dark:text-gray-200">
                     {item.target_type}
-                  </span>
+                  </Badge>
                   <p className="mt-2 text-muted-foreground">
                     {item.result.success 
                       ? `Successfully scraped ${item.result.items.length} items` 

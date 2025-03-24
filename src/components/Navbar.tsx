@@ -20,7 +20,7 @@ const Navbar = () => {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5 }}
           >
-            <Link to="/" className="text-xl font-semibold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-indigo-600">
+            <Link to="/" className="text-xl font-semibold tracking-tight">
               ScraperVerse
             </Link>
           </motion.div>
@@ -32,7 +32,7 @@ const Navbar = () => {
                   variant="ghost"
                   size="sm"
                   asChild
-                  className="gap-2"
+                  className="gap-2 hover:text-hover hover:bg-gray-100 dark:hover:bg-gray-800"
                 >
                   <Link to="/history">
                     <History className="h-4 w-4" />

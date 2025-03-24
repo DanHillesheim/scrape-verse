@@ -1,8 +1,8 @@
-
 export interface ScrapingOptions {
   targetType: 'article' | 'pdf' | 'image' | 'all';
   maxItems?: number;
   includeMetadata?: boolean;
+  maxDepth?: number; // Add this new property
 }
 
 export interface ScrapedItem {

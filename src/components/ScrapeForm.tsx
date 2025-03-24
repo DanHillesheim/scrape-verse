@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { ScrapingOptions, scrapeWebsite, ScrapingResult } from '../lib/scraper';
@@ -7,12 +6,15 @@ import { Search, FileText, Image, FileType2, Loader2 } from 'lucide-react';
 import { useAuth } from '@/contexts/AuthContext';
 import { historyService } from '@/lib/historyService';
 import { useToast } from '@/hooks/use-toast';
+import { Label } from '@/components/ui/label';
+import { Input } from '@/components/ui/input';
 
 export const ScrapeForm: React.FC = () => {
   const [url, setUrl] = useState('');
   const [options, setOptions] = useState<ScrapingOptions>({
     targetType: 'all',
     includeMetadata: true,
+    maxDepth: 1, // Default to 1 level deep
   });
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState<ScrapingResult | null>(null);
@@ -187,17 +189,45 @@ export const ScrapeForm: React.FC = () => {
               </motion.div>
             </div>
 
-            <div className="flex items-center">
-              <input
-                type="checkbox"
-                id="includeMetadata"
-                checked={options.includeMetadata}
-                onChange={(e) => setOptions({ ...options, includeMetadata: e.target.checked })}
-                className="rounded border-gray-300 text-blue-600 focus:ring-blue-500 h-5 w-5"
-              />
-              <label htmlFor="includeMetadata" className="ml-2 text-sm text-muted-foreground">
-                Include metadata (authors, dates, dimensions, etc.)
-              </label>
+            <div className="space-y-4">
+              <div className="flex items-center">
+                <input
+                  type="checkbox"
+                  id="includeMetadata"
+                  checked={options.includeMetadata}
+                  onChange={(e) => setOptions({ ...options, includeMetadata: e.target.checked })}
+                  className="rounded border-gray-300 text-blue-600 focus:ring-blue-500 h-5 w-5"
+                />
+                <label htmlFor="includeMetadata" className="ml-2 text-sm text-muted-foreground">
+                  Include metadata (authors, dates, dimensions, etc.)
+                </label>
+              </div>
+              
+              <div className="flex flex-col space-y-2">
+                <Label htmlFor="maxDepth" className="text-sm text-muted-foreground">
+                  Scraping depth (levels to follow links)
+                </Label>
+                <div className="flex items-center gap-2">
+                  <Input
+                    id="maxDepth"
+                    type="number"
+                    min="1"
+                    max="5"
+                    value={options.maxDepth || 1}
+                    onChange={(e) => setOptions({ 
+                      ...options, 
+                      maxDepth: Math.max(1, Math.min(5, parseInt(e.target.value) || 1)) 
+                    })}
+                    className="w-24 glass-input py-1 h-9 hover:border-hover"
+                  />
+                  <span className="text-sm text-muted-foreground">
+                    {options.maxDepth === 1 
+                      ? "Only the page you enter" 
+                      : `Follow links up to ${options.maxDepth} levels deep`
+                    }
+                  </span>
+                </div>
+              </div>
             </div>
 
             <div className="flex justify-center">

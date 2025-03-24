@@ -4,6 +4,32 @@
 
 **URL**: https://lovable.dev/projects/d0237b84-7f14-426f-82f5-c5297a0fe45c
 
+## Deployment to GitHub Pages
+
+To deploy this project to GitHub Pages:
+
+1. Create a new GitHub repository
+2. Push your project to the repository
+3. Install gh-pages:
+```sh
+npm install gh-pages --save-dev
+```
+
+4. Add these scripts to your `package.json`:
+```json
+"scripts": {
+  "predeploy": "npm run build",
+  "deploy": "gh-pages -d dist"
+}
+```
+
+5. Deploy your project:
+```sh
+npm run deploy
+```
+
+Your site will be available at `https://<your-username>.github.io/scrape-verse/`
+
 ## How can I edit this code?
 
 There are several ways of editing your application.

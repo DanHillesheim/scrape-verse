@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -15,6 +16,22 @@
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@lovable_dev" />
     <meta name="twitter:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
+    <script type="module">
+      // Handle GitHub Pages URL paths in development mode
+      (function() {
+        const { pathname } = window.location;
+        const baseTag = document.createElement('base');
+        
+        if (import.meta?.env?.DEV) {
+          baseTag.href = '/';
+        } else {
+          // In production on GitHub Pages
+          baseTag.href = '/scrape-verse/';
+        }
+        
+        document.head.prepend(baseTag);
+      })();
+    </script>
   </head>
 
   <body>

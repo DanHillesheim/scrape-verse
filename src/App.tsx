@@ -12,9 +12,11 @@ import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
 
-// Dynamically determine the base path
-const isDev = import.meta.env.DEV;
-const basePath = isDev ? "/" : "/scrape-verse/";
+// Get the base path from the document's base tag
+const getBasename = () => {
+  const base = document.querySelector('base');
+  return base ? base.getAttribute('href') || '/' : '/';
+};
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
@@ -23,7 +25,7 @@ const App = () => (
         <AuthProvider>
           <Toaster />
           <Sonner />
-          <BrowserRouter basename={basePath}>
+          <BrowserRouter basename={getBasename()}>
             <Routes>
               <Route path="/" element={<Index />} />
               <Route path="/history" element={<History />} />

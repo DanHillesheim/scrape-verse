@@ -115,8 +115,11 @@
   
   .glass-input {
     @apply bg-white/10 dark:bg-black/10 backdrop-blur-sm border border-white/20 dark:border-black/20 
-           focus:border-primary/50 focus:ring-1 focus:ring-primary/50
            transition-all duration-300;
+  }
+  
+  .glass-input:focus {
+    @apply border-primary/50 ring-1 ring-primary/50;
   }
 
   .hover-accent {

@@ -12,6 +12,10 @@ import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
 
+// Dynamically determine the base path
+const isDev = import.meta.env.DEV;
+const basePath = isDev ? "/" : "/scrape-verse/";
+
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <LazyMotion features={domAnimation}>
@@ -19,7 +23,7 @@ const App = () => (
         <AuthProvider>
           <Toaster />
           <Sonner />
-          <BrowserRouter>
+          <BrowserRouter basename={basePath}>
             <Routes>
               <Route path="/" element={<Index />} />
               <Route path="/history" element={<History />} />

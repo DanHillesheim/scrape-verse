@@ -12,8 +12,9 @@ import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
 
-// Ensure this matches the base in vite.config.ts
-const basePath = '/scrape-verse/';
+// Dynamically determine the base path
+const isDev = import.meta.env.DEV;
+const basePath = isDev ? "/" : "/scrape-verse/";
 
 const App = () => (
   <QueryClientProvider client={queryClient}>

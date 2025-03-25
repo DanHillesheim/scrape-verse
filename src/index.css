@@ -1,130 +1,122 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
 
-@layer base {
-  :root {
-    --background: #ffffff;
-    --foreground: #1a1a1a;
+:root {
+  --background: #ffffff;
+  --foreground: #1a1a1a;
 
-    --card: #ffffff;
-    --card-foreground: #1a1a1a;
+  --card: #ffffff;
+  --card-foreground: #1a1a1a;
 
-    --popover: #ffffff;
-    --popover-foreground: #1a1a1a;
+  --popover: #ffffff;
+  --popover-foreground: #1a1a1a;
 
-    --primary: #262626;
-    --primary-foreground: #fafafa;
+  --primary: #262626;
+  --primary-foreground: #fafafa;
 
-    --secondary: #f5f5f5;
-    --secondary-foreground: #333333;
+  --secondary: #f5f5f5;
+  --secondary-foreground: #333333;
 
-    --muted: #f5f5f5;
-    --muted-foreground: #737373;
+  --muted: #f5f5f5;
+  --muted-foreground: #737373;
 
-    --accent: #f5f5f5;
-    --accent-foreground: #333333;
+  --accent: #f5f5f5;
+  --accent-foreground: #333333;
 
-    --destructive: #ef4444;
-    --destructive-foreground: #fafafa;
+  --destructive: #ef4444;
+  --destructive-foreground: #fafafa;
 
-    --border: #e5e5e5;
-    --input: #e5e5e5;
-    --ring: #b3b3b3;
+  --border: #e5e5e5;
+  --input: #e5e5e5;
+  --ring: #b3b3b3;
 
-    --radius: 0.75rem;
+  --radius: 0.75rem;
 
-    --sidebar-background: #fafafa;
-    --sidebar-foreground: #424242;
-    --sidebar-primary: #1a1a1a;
-    --sidebar-primary-foreground: #fafafa;
-    --sidebar-accent: #f2f2f2;
-    --sidebar-accent-foreground: #1a1a1a;
-    --sidebar-border: #e8e8e8;
-    --sidebar-ring: #175DDC;
-  }
-
-  .dark {
-    --background: #121212;
-    --foreground: #f2f2f2;
-
-    --card: #121212;
-    --card-foreground: #f2f2f2;
-
-    --popover: #121212;
-    --popover-foreground: #f2f2f2;
-
-    --primary: #cccccc;
-    --primary-foreground: #0d0d0d;
-
-    --secondary: #262626;
-    --secondary-foreground: #f2f2f2;
-
-    --muted: #262626;
-    --muted-foreground: #a6a6a6;
-
-    --accent: #262626;
-    --accent-foreground: #f2f2f2;
-
-    --destructive: #7f1d1d;
-    --destructive-foreground: #f2f2f2;
-
-    --border: #333333;
-    --input: #333333;
-    --ring: #b3b3b3;
-    
-    --sidebar-background: #1a1a1a;
-    --sidebar-foreground: #f2f2f2;
-    --sidebar-primary: #b3b3b3;
-    --sidebar-primary-foreground: #000000;
-    --sidebar-accent: #292929;
-    --sidebar-accent-foreground: #f2f2f2;
-    --sidebar-border: #292929;
-    --sidebar-ring: #175DDC;
-  }
+  --sidebar-background: #fafafa;
+  --sidebar-foreground: #424242;
+  --sidebar-primary: #1a1a1a;
+  --sidebar-primary-foreground: #fafafa;
+  --sidebar-accent: #f2f2f2;
+  --sidebar-accent-foreground: #1a1a1a;
+  --sidebar-border: #e8e8e8;
+  --sidebar-ring: #175DDC;
 }
 
-@layer base {
-  * {
-    @apply border-border;
-  }
+.dark {
+  --background: #121212;
+  --foreground: #f2f2f2;
+
+  --card: #121212;
+  --card-foreground: #f2f2f2;
+
+  --popover: #121212;
+  --popover-foreground: #f2f2f2;
+
+  --primary: #cccccc;
+  --primary-foreground: #0d0d0d;
+
+  --secondary: #262626;
+  --secondary-foreground: #f2f2f2;
+
+  --muted: #262626;
+  --muted-foreground: #a6a6a6;
+
+  --accent: #262626;
+  --accent-foreground: #f2f2f2;
+
+  --destructive: #7f1d1d;
+  --destructive-foreground: #f2f2f2;
+
+  --border: #333333;
+  --input: #333333;
+  --ring: #b3b3b3;
   
-  body {
-    @apply bg-background text-foreground;
-    font-feature-settings: "ss01" 1, "cv01" 1, "cv02" 1, "cv03" 1, "cv04" 1;
-  }
-  
-  #root {
-    @apply min-h-screen w-full m-0 p-0;
-  }
+  --sidebar-background: #1a1a1a;
+  --sidebar-foreground: #f2f2f2;
+  --sidebar-primary: #b3b3b3;
+  --sidebar-primary-foreground: #000000;
+  --sidebar-accent: #292929;
+  --sidebar-accent-foreground: #f2f2f2;
+  --sidebar-border: #292929;
+  --sidebar-ring: #175DDC;
 }
 
-@layer components {
-  .glass-card {
-    @apply bg-white/70 dark:bg-black/70 backdrop-blur-lg;
-  }
-  
-  .glass-button {
-    @apply bg-white/20 dark:bg-black/20 backdrop-blur-md hover:bg-white/30 dark:hover:bg-black/30 
-           text-foreground border border-white/10 dark:border-black/10 
-           transition-all duration-300;
-  }
-  
-  .glass-input {
-    @apply bg-white/10 dark:bg-black/10 backdrop-blur-sm border border-white/20 dark:border-black/20 
-           transition-all duration-300;
-  }
-  
-  .glass-input:focus {
-    @apply border-primary/50 ring-1 ring-primary/50;
-  }
+* {
+  @layer border-border;
+}
 
-  .hover-accent {
-    @apply hover:text-[#175DDC] hover:border-[#175DDC] focus:ring-[#175DDC] active:text-[#175DDC];
-  }
+body {
+  @layer bg-background text-foreground;
+  font-feature-settings: "ss01" 1, "cv01" 1, "cv02" 1, "cv03" 1, "cv04" 1;
+}
+
+#root {
+  @layer min-h-screen w-full m-0 p-0;
+}
+
+.glass-card {
+  @layer bg-white/70 dark:bg-black/70 backdrop-blur-lg;
+}
+
+.glass-button {
+  @layer bg-white/20 dark:bg-black/20 backdrop-blur-md hover:bg-white/30 dark:hover:bg-black/30 
+         text-foreground border border-white/10 dark:border-black/10 
+         transition-all duration-300;
+}
+
+.glass-input {
+  @layer bg-white/10 dark:bg-black/10 backdrop-blur-sm border border-white/20 dark:border-black/20 
+         transition-all duration-300;
+}
+
+.glass-input:focus {
+  @layer border-primary/50 ring-1 ring-primary/50;
+}
+
+.hover-accent {
+  @layer hover:text-[#175DDC] hover:border-[#175DDC] focus:ring-[#175DDC] active:text-[#175DDC];
 }
 
 .content-appear {
